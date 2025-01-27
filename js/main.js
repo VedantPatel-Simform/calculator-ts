@@ -4,7 +4,7 @@ import validateExpression from "./validate.js";
 import calculateAns from "./calculateAnswer.js";
 import history from "./history.js";
 import openModal from "./openModal.js";
-const myHistory = new history();
+const myHistory = history();
 myHistory.init();
 
 const display = document.getElementById("display");
@@ -58,7 +58,7 @@ buttons.forEach((button) => {
           ans,
         };
         myHistory.add(temp);
-        currentExpression = `= ${parseFloat(ans.toFixed(14))} `;
+        currentExpression = `${parseFloat(ans.toFixed(14))}`;
       } catch (error) {
         currentExpression = "Error";
       }

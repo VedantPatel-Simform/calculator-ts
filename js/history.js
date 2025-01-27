@@ -1,7 +1,7 @@
 function history() {
+  // using closure
+  let arr = [];
   return {
-    arr: [],
-
     // Initialize history from localStorage if available
     init: function () {
       const savedHistory = localStorage.getItem("calculatorHistory");
@@ -14,13 +14,13 @@ function history() {
     clearHistory: function () {
       this.arr = [];
       this.updateHistoryModal();
-      localStorage.setItem("calculatorHistory", JSON.stringify(this.arr)); // Save cleared history to localStorage
+      localStorage.setItem("calculatorHistory", JSON.stringify(this.arr));
     },
 
     add: function (obj) {
       this.arr.push(obj);
       this.updateHistoryModal();
-      localStorage.setItem("calculatorHistory", JSON.stringify(this.arr)); // Save new history to localStorage
+      localStorage.setItem("calculatorHistory", JSON.stringify(this.arr));
     },
 
     updateHistoryModal: function () {
@@ -30,14 +30,13 @@ function history() {
       for (let i = 0; i < this.arr.length; i++) {
         const historyItem = this.arr[i];
 
-        const historyItemHTML = `
+        // to add adjecent divs inside the history class
+        historyDiv.innerHTML += `
           <div class="item">
             <div class="expression">${historyItem.expression}</div>
             <div class="ans">${historyItem.ans}</div>
           </div>
         `;
-
-        historyDiv.insertAdjacentHTML("beforeend", historyItemHTML);
       }
     },
   };
