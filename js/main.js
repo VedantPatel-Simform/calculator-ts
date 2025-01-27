@@ -5,6 +5,7 @@ import calculateAns from "./calculateAnswer.js";
 import history from "./history.js";
 import openModal from "./openModal.js";
 const myHistory = new history();
+myHistory.init();
 
 const display = document.getElementById("display");
 const buttons = document.querySelectorAll(".btn");
@@ -51,8 +52,12 @@ buttons.forEach((button) => {
       }
     } else if (action === "equals") {
       try {
-        console.log(currentExpression);
         const ans = evaluateExpression(currentExpression);
+        let temp = {
+          expression: currentExpression,
+          ans,
+        };
+        myHistory.add(temp);
         currentExpression = `= ${parseFloat(ans.toFixed(14))} `;
       } catch (error) {
         currentExpression = "Error";
@@ -98,3 +103,7 @@ function setMode() {
 setMode();
 
 openModal(document);
+
+document.getElementById("clear-history").addEventListener("click", () => {
+  myHistory.clearHistory();
+});
