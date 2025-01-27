@@ -11,7 +11,7 @@
       <button class="dark-mode" id="dark">Dark Mode</button>
       <button class="light-mode" id="light">Light Mode</button>
     </div>
-    <div class="calculator">
+    <div class="calculator box">
       <div class="display" id="display">0</div>
       <div class="buttons">
         <button class="btn" data-action="clear">C</button>
@@ -46,6 +46,40 @@
         <button class="btn scientific" data-value="π">π</button>
         <button class="btn scientific" data-value="e">e</button>
         <!-- <button class="btn scientific" id="radian">Rad</button> -->
+      </div>
+    </div>
+
+    <!-- History Button -->
+    <button class="btn" id="historyBtn">History</button>
+
+    <!-- Modal -->
+    <div id="historyModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>History</h2>
+        <div class="history">
+          <!-- Example of a populated history item -->
+          <div class="item">
+            <div class="expression">5 + 3</div>
+            <div class="ans">8</div>
+          </div>
+          <div class="item">
+            <div class="expression">12 ÷ 4</div>
+            <div class="ans">3</div>
+          </div>
+          <div class="item">
+            <div class="expression">sin(30°)</div>
+            <div class="ans">0.5</div>
+          </div>
+          <div class="item">
+            <div class="expression">√16</div>
+            <div class="ans">4</div>
+          </div>
+          <div class="item">
+            <div class="expression">π * 2</div>
+            <div class="ans">6.2832</div>
+          </div>
+        </div>
       </div>
     </div>
 

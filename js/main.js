@@ -2,6 +2,10 @@ import { evaluateExpression } from "./calculator.js";
 import stack from "./stack.js";
 import validateExpression from "./validate.js";
 import calculateAns from "./calculateAnswer.js";
+import history from "./history.js";
+import openModal from "./openModal.js";
+const myHistory = new history();
+
 const display = document.getElementById("display");
 const buttons = document.querySelectorAll(".btn");
 const body = document.getElementById("body");
@@ -92,3 +96,5 @@ function setMode() {
 }
 
 setMode();
+
+openModal(document);
