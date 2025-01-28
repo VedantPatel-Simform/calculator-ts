@@ -47,7 +47,7 @@ function inputHandler(action, value, currentExpression, myHistory) {
     // if scientific expression , then add extra ( after the expression, like sin( , cos( ......
     value = isScientificOperation(value);
     if (value == "(") {
-      value = "*(";
+      value = "(";
     }
     if (displayIsEmpty()) {
       currentExpression = value;

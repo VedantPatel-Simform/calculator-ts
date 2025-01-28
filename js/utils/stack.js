@@ -1,21 +1,21 @@
 function stack() {
+  let arr = [];
+
   return {
-    arr: [],
     peek: function () {
-      return this.arr[this.arr.length - 1];
-    },
-    push: function (val) {
-      this.arr.push(val);
+      return arr[arr.length - 1];
     },
     pop: function () {
-      let val = this.arr.pop();
-      return val;
+      return arr.pop();
     },
-    length: function () {
-      return this.arr.length;
+    push: function (val) {
+      arr.push(val);
     },
     isEmpty: function () {
-      return !this.arr.length;
+      return arr.length == 0;
+    },
+    log: function () {
+      console.log("stack = ", arr);
     },
   };
 }

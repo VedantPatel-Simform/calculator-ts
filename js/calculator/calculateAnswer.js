@@ -5,8 +5,6 @@ const precedence = {
   "-": 1,
   "*": 2,
   "/": 2,
-  "(": 3,
-  ")": 3,
   "^": 4,
 };
 
@@ -18,32 +16,33 @@ function infixToPostfix(tokens) {
   const myStack = new stack();
   const expression = [];
 
-  tokens.forEach((token) => {
+  tokens.forEach((token, i) => {
     if (isOperand(token)) {
       expression.push(token);
+    } else if (token == "(") {
+      myStack.push(token);
     } else {
-      if (token === "(") {
-        myStack.push(token);
-      } else if (token === ")") {
-        // Pop until '(' is encountered
-        while (!myStack.isEmpty() && myStack.peek() !== "(") {
+      if (token == ")") {
+        while (!myStack.isEmpty() && myStack.peek() != "(") {
           expression.push(myStack.pop());
         }
-        myStack.pop(); // pop the '('
+
+        myStack.pop();
       } else {
-        // Operator handling
         while (
           !myStack.isEmpty() &&
           precedence[myStack.peek()] >= precedence[token]
         ) {
           expression.push(myStack.pop());
         }
+
         myStack.push(token);
       }
     }
   });
 
   // Pop remaining operators in the stack
+  myStack.log();
   while (!myStack.isEmpty()) {
     expression.push(myStack.pop());
   }
