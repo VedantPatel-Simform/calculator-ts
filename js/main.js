@@ -1,18 +1,17 @@
-import { evaluateExpression } from "./calculator.js";
-import stack from "./stack.js";
-import validateExpression from "./validate.js";
-import calculateAns from "./calculateAnswer.js";
-import history from "./history.js";
-import openModal from "./openModal.js";
-import setMode from "./darkMode.js";
-import inputHandler from "./inputHandler.js";
+import { evaluateExpression } from "./calculator/calculator.js";
+import stack from "./utils/stack.js";
+import validateExpression from "./utils/validate.js";
+import calculateAns from "./calculator/calculateAnswer.js";
+import history from "./calculator/history.js";
+import openModal from "./utils/openModal.js";
+import setMode from "./utils/darkMode.js";
+import inputHandler from "./utils/inputHandler.js";
 
 const myHistory = history();
 myHistory.init();
 
 const display = document.getElementById("display");
 const buttons = document.querySelectorAll(".btn");
-const body = document.getElementById("body");
 let currentExpression = "0";
 
 function updateDisplay(expression) {

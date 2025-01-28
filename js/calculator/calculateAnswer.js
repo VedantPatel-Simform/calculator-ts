@@ -1,4 +1,4 @@
-import stack from "./stack.js";
+import stack from "../utils/stack.js";
 
 const precedence = {
   "+": 1,

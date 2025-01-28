@@ -1,4 +1,4 @@
-import { evaluateExpression } from "./calculator.js";
+import { evaluateExpression } from "../calculator/calculator.js";
 
 function inputHandler(action, value, currentExpression, myHistory) {
   let temp;

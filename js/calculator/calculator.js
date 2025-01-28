@@ -1,6 +1,6 @@
-import stack from "./stack.js";
-import validateExpression from "./validate.js";
-import evaluateScientific from "./evaluateScientific.js";
+import stack from "../utils/stack.js";
+import validateExpression from "../utils/validate.js";
+import evaluateScientific from "../utils/evaluateScientific.js";
 import calculateAns from "./calculateAnswer.js";
 
 export const evaluateExpression = (expr) => {
