@@ -38,7 +38,11 @@ function inputHandler(action, value, currentExpression, myHistory) {
         expression: currentExpression,
         ans,
       };
-      currentExpression = `${parseFloat(ans.toFixed(14))}`;
+      if (isNaN(ans)) {
+        currentExpression = ans;
+      } else {
+        currentExpression = `${parseFloat(ans.toFixed(14))}`;
+      }
       myHistory.add(temp);
     } catch (error) {
       currentExpression = "Error";

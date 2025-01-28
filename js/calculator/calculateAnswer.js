@@ -13,7 +13,7 @@ function isOperand(val) {
 }
 
 function infixToPostfix(tokens) {
-  const myStack = new stack();
+  const myStack = stack();
   const expression = [];
 
   tokens.forEach((token, i) => {
@@ -42,7 +42,6 @@ function infixToPostfix(tokens) {
   });
 
   // Pop remaining operators in the stack
-  myStack.log();
   while (!myStack.isEmpty()) {
     expression.push(myStack.pop());
   }
@@ -50,10 +49,10 @@ function infixToPostfix(tokens) {
   return expression;
 }
 
-function evaluatePostfix(tokens) {
-  const myStack = new stack();
+function evaluatePostfix(postfix) {
+  const myStack = stack();
 
-  tokens.forEach((token) => {
+  postfix.forEach((token) => {
     if (isOperand(token)) {
       myStack.push(parseFloat(token)); // push operand
     } else {

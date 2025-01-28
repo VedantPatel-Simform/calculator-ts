@@ -1,16 +1,16 @@
-import stack from "../utils/stack.js";
 import validateExpression from "../utils/validate.js";
 import evaluateScientific from "../utils/evaluateScientific.js";
 import calculateAns from "./calculateAnswer.js";
 
 export const evaluateExpression = (expr) => {
   const validationError = validateExpression(expr);
-  if (validationError) {
+  console.log(validationError);
+  if (validationError !== null) {
     return validationError;
   }
   expr = evaluateScientific(expr);
   const tokens = tokenize(expr);
-
+  console.log("tokens = ", tokens);
   return calculateAns(tokens);
 };
 
