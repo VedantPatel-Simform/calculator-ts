@@ -28,7 +28,7 @@ function history() {
       historyDiv.innerHTML = "";
 
       for (let i = 0; i < this.arr.length; i++) {
-        const historyItem = this.arr[i];
+        let historyItem = this.arr[i];
 
         // to add adjecent divs inside the history class
         historyDiv.innerHTML += `

@@ -9,9 +9,7 @@ export const evaluateExpression = (expr) => {
     return validationError;
   }
   expr = evaluateScientific(expr);
-  console.log(expr);
   const tokens = tokenize(expr);
-  console.log(tokens);
 
   return calculateAns(tokens);
 };
