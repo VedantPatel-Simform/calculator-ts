@@ -15,6 +15,6 @@ export const evaluateExpression = (expr) => {
 };
 
 function tokenize(expr) {
-  const regex = /\s*(\d+\.\d+|\d+|[-+*/^()|,]|sin|cos|log|tan|Pi|e)/g;
+  const regex = /\s*(-?\d+\.\d+|-?\d+|[-+*/^()|,]|sin|cos|log|tan|Pi|e)/g;
   return expr.match(regex);
 }
