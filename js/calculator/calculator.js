@@ -9,7 +9,9 @@ export const evaluateExpression = (expr) => {
   }
 
   expr = evaluateScientific(expr);
+  console.log(expr);
   const tokens = tokenize(expr);
+  console.log(tokens);
   return calculateAns(tokens);
 };
 

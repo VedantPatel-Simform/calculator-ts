@@ -34,16 +34,18 @@ function inputHandler(action, value, currentExpression, myHistory) {
   } else if (action === "equals") {
     try {
       const ans = evaluateExpression(currentExpression);
+      const removedMinusExpression = currentExpression.replaceAll("\\\\", " ");
       temp = {
-        expression: currentExpression,
+        expression: removedMinusExpression,
         ans,
       };
       if (isNaN(ans)) {
         currentExpression = ans;
       } else {
         currentExpression = `${parseFloat(ans.toFixed(14))}`;
+        console.log(temp);
+        myHistory.add(temp);
       }
-      myHistory.add(temp);
     } catch (error) {
       currentExpression = "Error";
     }

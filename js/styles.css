@@ -192,3 +192,7 @@ body {
 #clear-history:hover {
     transform: scale(0.90);
 }
+
+.minus {
+    background-color: rgb(0, 255, 234);
+}
