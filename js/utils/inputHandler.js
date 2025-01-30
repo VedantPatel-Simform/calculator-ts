@@ -7,10 +7,27 @@ function inputHandler(action, value, currentExpression, myHistory) {
   }
 
   // using set to reduce time complexity to O(1)
-  const scientificOperations = new Set(["sin", "cos", "tan", "log"]);
+  const scientificOperations = new Set(["sin", "cos", "tan", "log", "sqrt"]);
 
   function isScientificOperation(value) {
     return scientificOperations.has(value) ? value + "(" : value;
+  }
+
+  function formatAnswer(ans) {
+    let finalAnswer;
+    if (typeof ans == "string") {
+      let temp;
+      temp = ans.replaceAll("\\\\", "");
+      if (isNaN(temp)) {
+        finalAnswer = ans;
+      } else {
+        finalAnswer = temp;
+      }
+    } else {
+      finalAnswer = ans;
+    }
+
+    return Number(finalAnswer);
   }
 
   if (action === "clear") {
@@ -35,19 +52,20 @@ function inputHandler(action, value, currentExpression, myHistory) {
     try {
       const ans = evaluateExpression(currentExpression);
       const removedMinusExpression = currentExpression.replaceAll("\\\\", " ");
+
+      let finalAnswer = formatAnswer(ans);
       temp = {
         expression: removedMinusExpression,
-        ans,
+        ans: finalAnswer,
       };
-      if (isNaN(ans)) {
+      if (isNaN(finalAnswer)) {
         currentExpression = ans;
       } else {
-        currentExpression = `${parseFloat(ans.toFixed(14))}`;
-        console.log(temp);
+        currentExpression = `${parseFloat(finalAnswer.toFixed(14))}`;
         myHistory.add(temp);
       }
     } catch (error) {
-      currentExpression = "Error";
+      currentExpression = error.message;
     }
   } else if (value) {
     // if scientific expression , then add extra ( after the expression, like sin( , cos( ......
@@ -62,6 +80,7 @@ function inputHandler(action, value, currentExpression, myHistory) {
     }
   }
 
+  console.log("hello");
   return { history: temp, currentExpression };
 }
 

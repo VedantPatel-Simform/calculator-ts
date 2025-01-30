@@ -20,6 +20,11 @@ function evaluateScientific(expression) {
       regex: /log\(([^)]+)\)/,
       evaluator: (val) => Math.log10(parseFloat(val)),
     },
+    {
+      func: "sqrt",
+      regex: /sqrt\(([^)]+)\)/,
+      evaluator: (val) => Math.sqrt(parseFloat(val)),
+    },
   ];
 
   expression = expression.replace(/π/g, Math.PI).replace(/e/g, Math.E);
