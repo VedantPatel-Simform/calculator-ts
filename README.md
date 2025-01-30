@@ -1,5 +1,5 @@
 # Scientific Calculator
-
+Live: [https://vedantpatel-simform.github.io/calculator-assignment/](https://vedantpatel-simform.github.io/calculator-assignment/)
 ## Features
 
 - **Infix to Postfix Conversion**: Performs calculation evaluation using the infix-to-postfix conversion method.
