@@ -15,7 +15,12 @@ const buttons = document.querySelectorAll(".btn");
 let currentExpression = "0";
 
 function updateDisplay(expression) {
-  display.textContent = currentExpression;
+  display.textContent = expression;
+}
+
+function replaceMinus(expr) {
+  let temp = expr.replaceAll("\\\\", " "); // Single backslash in the regex
+  return temp;
 }
 
 buttons.forEach((button) => {
@@ -24,7 +29,8 @@ buttons.forEach((button) => {
     let value = button.dataset.value;
     let answer = inputHandler(action, value, currentExpression, myHistory);
     currentExpression = answer.currentExpression;
-    updateDisplay(currentExpression);
+    const modified = replaceMinus(currentExpression);
+    updateDisplay(modified);
   });
 });
 

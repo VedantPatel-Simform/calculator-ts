@@ -14,9 +14,6 @@ function stack() {
     isEmpty: function () {
       return arr.length == 0;
     },
-    log: function () {
-      console.log("stack = ", arr);
-    },
   };
 }
 

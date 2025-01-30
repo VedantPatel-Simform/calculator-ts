@@ -90,9 +90,8 @@ function evaluatePostfix(postfix) {
 
 function calculateAns(tokens) {
   const postfix = infixToPostfix(tokens);
-  console.log(postfix);
   const ans = evaluatePostfix(postfix);
-  return ans;
+  return ans >= 0 ? ans : "\\\\" + ans;
 }
 
 export default calculateAns;
