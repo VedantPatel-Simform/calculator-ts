@@ -23,14 +23,41 @@ function replaceMinus(expr) {
   return temp;
 }
 
+function deleteFeature() {
+  // to delete 4 spaces backwards in case of sin( cos( tan( log(
+  const condition =
+    currentExpression[currentExpression.length - 1] == "(" &&
+    isNaN(currentExpression[currentExpression.length - 2]);
+
+  if (condition) {
+    currentExpression = currentExpression.slice(0, -4);
+    if (currentExpression.length == 0) {
+      currentExpression = "0";
+    }
+  } else if (currentExpression.length > 1) {
+    currentExpression = currentExpression.slice(0, -1);
+  } else {
+    currentExpression = "0";
+  }
+
+  return currentExpression;
+}
+
 buttons.forEach((button) => {
   button.addEventListener("click", (event) => {
     const action = button.dataset.action;
     let value = button.dataset.value;
-    let answer = inputHandler(action, value, currentExpression, myHistory);
+    let answer = inputHandler(
+      action,
+      value,
+      currentExpression,
+      myHistory,
+      document
+    );
     currentExpression = answer.currentExpression;
     const modified = replaceMinus(currentExpression);
     updateDisplay(modified);
+    button.blur();
   });
 });
 
@@ -41,3 +68,37 @@ openModal(document);
 document.getElementById("clear-history").addEventListener("click", () => {
   myHistory.clearHistory();
 });
+
+function setAction(event) {
+  if (event.code == "Backspace") {
+    return "delete";
+  } else if (event.code == "Enter") {
+    return "equals";
+  }
+}
+
+function setValue(event) {
+  const digit = event.code.slice(-1);
+  if (!isNaN(digit)) {
+    return digit;
+  } else if (["+", "-", "/", "*", "^"].includes(event.key)) {
+    return event.key;
+  }
+}
+
+document.onkeydown = (event) => {
+  const action = setAction(event);
+  const value = action === "equals" ? undefined : setValue(event);
+  let answer = inputHandler(
+    action,
+    value,
+    currentExpression,
+    myHistory,
+    document
+  );
+  currentExpression = answer.currentExpression;
+
+  const modified = replaceMinus(currentExpression);
+
+  updateDisplay(modified);
+};

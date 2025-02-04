@@ -1,6 +1,6 @@
 import { evaluateExpression } from "../calculator/calculator.js";
 
-function inputHandler(action, value, currentExpression, myHistory) {
+function inputHandler(action, value, currentExpression, myHistory, document) {
   let temp;
   function displayIsEmpty() {
     return currentExpression == "0";
@@ -11,6 +11,24 @@ function inputHandler(action, value, currentExpression, myHistory) {
 
   function isScientificOperation(value) {
     return scientificOperations.has(value) ? value + "(" : value;
+  }
+
+  function deleteFeature() {
+    // to delete 4 spaces backwards in case of sin( cos( tan( log(
+    const condition =
+      currentExpression[currentExpression.length - 1] == "(" &&
+      isNaN(currentExpression[currentExpression.length - 2]);
+
+    if (condition) {
+      currentExpression = currentExpression.slice(0, -4);
+      if (currentExpression.length == 0) {
+        currentExpression = "0";
+      }
+    } else if (currentExpression.length > 1) {
+      currentExpression = currentExpression.slice(0, -1);
+    } else {
+      currentExpression = "0";
+    }
   }
 
   function formatAnswer(ans) {
@@ -33,27 +51,14 @@ function inputHandler(action, value, currentExpression, myHistory) {
   if (action === "clear") {
     currentExpression = "0";
   } else if (action === "delete") {
-    // to delete 4 spaces backwards in case of sin( cos( tan( log(
-    const condition =
-      currentExpression[currentExpression.length - 1] == "(" &&
-      isNaN(currentExpression[currentExpression.length - 2]);
-
-    if (condition) {
-      currentExpression = currentExpression.slice(0, -4);
-      if (currentExpression.length == 0) {
-        currentExpression = "0";
-      }
-    } else if (currentExpression.length > 1) {
-      currentExpression = currentExpression.slice(0, -1);
-    } else {
-      currentExpression = "0";
-    }
+    deleteFeature();
   } else if (action === "equals") {
     try {
       const ans = evaluateExpression(currentExpression);
       const removedMinusExpression = currentExpression.replaceAll("\\\\", " ");
 
       let finalAnswer = formatAnswer(ans);
+
       temp = {
         expression: removedMinusExpression,
         ans: finalAnswer,
@@ -80,8 +85,6 @@ function inputHandler(action, value, currentExpression, myHistory) {
     }
   }
 
-  console.log("hello");
   return { history: temp, currentExpression };
 }
-
 export default inputHandler;
