@@ -79,6 +79,6 @@ function evaluatePostfix(postfix) {
 function calculateAns(tokens) {
     const postfix = infixToPostfix(tokens);
     const ans = evaluatePostfix(postfix);
-    return ans >= 0 ? ans : `\\\\${ans}`;
+    return ans >= 0 ? String(ans) : `\\\\${ans}`;
 }
 export default calculateAns;

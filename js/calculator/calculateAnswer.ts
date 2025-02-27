@@ -86,10 +86,10 @@ function evaluatePostfix(postfix: string[]): number {
   return parseFloat(myStack.pop() as string);
 }
 
-function calculateAns(tokens: string[]): string | number {
+function calculateAns(tokens: string[]): string {
   const postfix = infixToPostfix(tokens);
   const ans: number = evaluatePostfix(postfix);
-  return ans >= 0 ? ans : `\\\\${ans}`;
+  return ans >= 0 ? String(ans) : `\\\\${ans}`;
 }
 
 export default calculateAns;

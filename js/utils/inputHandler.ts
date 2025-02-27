@@ -7,7 +7,7 @@ interface HistoryEntry {
 }
 
 interface InputHandlerResponse {
-  history?: HistoryEntry;
+  history: HistoryEntry | undefined;
   currentExpression: string;
 }
 
@@ -19,7 +19,6 @@ function inputHandler(
   document: Document
 ): InputHandlerResponse {
   let temp: HistoryEntry | undefined;
-
   function displayIsEmpty(): boolean {
     return currentExpression === "0";
   }
@@ -49,18 +48,14 @@ function inputHandler(
     }
   }
 
-  function formatAnswer(ans: number | string): number {
-    let finalAnswer: number | string;
-    if (typeof ans === "string") {
-      let temp = ans.replaceAll("\\\\", "");
-      finalAnswer = isNaN(Number(temp)) ? ans : temp;
-    } else {
-      finalAnswer = ans;
-    }
+  function formatAnswer(ans: string): number {
+    let finalAnswer: string;
+
+    let temp = ans.replaceAll("\\\\", "");
+    finalAnswer = isNaN(Number(temp)) ? ans : temp;
 
     return Number(finalAnswer);
   }
-
   if (action === "clear") {
     currentExpression = "0";
   } else if (action === "delete") {

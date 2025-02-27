@@ -28,13 +28,8 @@ function inputHandler(action, value, currentExpression, myHistory, document) {
     }
     function formatAnswer(ans) {
         let finalAnswer;
-        if (typeof ans === "string") {
-            let temp = ans.replaceAll("\\\\", "");
-            finalAnswer = isNaN(Number(temp)) ? ans : temp;
-        }
-        else {
-            finalAnswer = ans;
-        }
+        let temp = ans.replaceAll("\\\\", "");
+        finalAnswer = isNaN(Number(temp)) ? ans : temp;
         return Number(finalAnswer);
     }
     if (action === "clear") {
