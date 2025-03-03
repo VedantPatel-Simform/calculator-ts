@@ -9,26 +9,47 @@ Live: [https://vedantpatel-simform.github.io/calculator-assignment/](https://ved
 - **Dark Mode**: Implemented dark mode feature .
 - **Modules**: Divided the files into different modules .
 
-## Folder Structure
-- index.html
-- styles.css
-- js
-  - calculator
-    - calculateAnswer.js
-    - calculator.js
-    - history.js
-  - main.js
-  - utils
-    - darkMode.js
-    - evaluateScientific.js
-    - inputHandler.js
-    - openModal.js
-    - stack.js
-    - validate.js
-- ss
-  - 1.png
-  - 2.png
-  - 3.png
+# Project Structure
+
+- project-root
+  - dist
+    - calculator
+      - calculateAnswer.js
+      - calculator.js
+      - history.js
+    - utils
+      - darkMode.js
+      - evaluateScientific.js
+      - inputHandler.js
+      - openModal.js
+      - stack.js
+      - validate.js
+    - main.js
+  - js
+    - calculator
+      - calculateAnswer.ts
+      - calculator.ts
+      - history.ts
+    - utils
+      - darkMode.ts
+      - evaluateScientific.ts
+      - inputHandler.ts
+      - openModal.ts
+      - stack.ts
+      - validate.ts
+    - main.ts
+  - node_modules
+  - ss
+    - 1.png
+    - 2.png
+    - 3.png
+  - index.html
+  - package-lock.json
+  - package.json
+  - README.md
+  - styles.css
+  - tsconfig.json
+
 
 ## Screenshot
 
