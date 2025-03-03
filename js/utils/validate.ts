@@ -11,14 +11,19 @@ function validateExpression(expr: string) {
   if (
     /^[+\-*/^]/.test(expr) || // checks if the expr starts with operator
     /[+\-*/^]$/.test(expr) || // checks if expr ends with operator
-    /[+\-*/^]{2,}/.test(expr) //  checks continuous operators
+    /[+\-*/^]{2,}/.test(expr) // checks continuous operators
   ) {
-    return " Expression Error";
+    return "Expression Error";
   }
 
   // if the expression contains empty parentheses
   if (/\(\s*\)/.test(expr)) {
-    return " Empty Parenthesis Error";
+    return "Empty Parenthesis Error";
+  }
+
+  // Check if a decimal point is used without a number before it
+  if (/\.\d/.test(expr) && !/\d\./.test(expr)) {
+    return "Expression Error";
   }
 
   return null;
